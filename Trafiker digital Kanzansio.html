@@ -1,0 +1,940 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <!-- SEO Optimizado -->
+  <title>Eduardo Kanzansio - Digital Trafficker & Desarrollador Web en Mérida | Marketing Digital</title>
+  <meta name="keywords" content="digital trafficker, kanzansio, eduardo antonio rosado can, marketing digital mérida, desarrollo web yucatán, seo mérida, community manager, producción audiovisual" />
+  <link rel="icon" href="https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20Logo-01.svg" type="image/svg+xml" />
+  <meta name="author" content="Eduardo Antonio Rosado Can - Kanzansio" />
+  <meta name="description" content="Eduardo Kanzansio: Digital Trafficker con +10 años de experiencia. Desarrollo web, SEO, producción audiovisual para influencers. Experto en automatización y marketing digital en Mérida." />
+  
+  <!-- Open Graph -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Eduardo Kanzansio - Digital Trafficker & Desarrollador Web" />
+  <meta property="og:description" content="Más de 10 años creando soluciones digitales. Desde páginas web hasta producción para influencers como Mr Bubus. Tu mejor opción en marketing digital." />
+  <meta property="og:url" content="https://kanzansio.digital" />
+  <meta property="og:image" content="https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20transparente.gif" />
+  <meta property="og:locale" content="es_MX" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Eduardo Kanzansio - Digital Trafficker" />
+  <meta name="twitter:description" content="Tu mejor opción en marketing digital. Experiencia desde los 14 años en el mundo digital." />
+  <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20transparente.gif" />
+  
+  <!-- Canonical URL -->
+  <link rel="canonical" href="https://kanzansio.digital" />
+
+  
+  <!-- Robots -->
+  <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+  
+  <!-- Alternate Languages -->
+  <link rel="alternate" hreflang="es-MX" href="https://kanzansio.digital" />
+  
+  <!-- JSON-LD Schema -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "Person",
+    "name": "Eduardo Antonio Rosado Can",
+    "alternateName": "Kanzansio",
+    "url": "https://kanzansio.digital",
+    "image": "https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20transparente.gif",
+    "sameAs": [
+      "https://www.linkedin.com/in/eduardo-antonio-rosado-can",
+      "https://www.facebook.com/kanzansiodigital",
+      "https://www.tiktok.com/@kanzansio"
+    ],
+    "jobTitle": "Digital Trafficker & Web Developer",
+    "worksFor": {
+      "@type": "Organization",
+      "name": "Kanzansio Digital"
+    },
+    "address": {
+      "@type": "PostalAddress",
+      "addressLocality": "Mérida",
+      "addressRegion": "Yucatán",
+      "addressCountry": "MX"
+    },
+    "description": "Digital Trafficker con más de 10 años de experiencia, especialista en desarrollo web, SEO, automatización y producción audiovisual."
+  }
+  </script>
+
+  <!-- Fuentes y estilos -->
+  <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet" />
+  <link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"
+/>
+  <style>
+  /* Root Variables */
+  :root {
+    --font-console: 'VT323', monospace;
+    --color-console: rgba(159,255,232,0.9);
+    --bg-console: #031E11;
+    --bg-screen: #383838;
+    --border-top: #020202;
+    --border-sides: #080808;
+    --border-bottom: #121212;
+    --text-bg: #ffffff;
+    --text-color: #031e11;
+    --line-height: 1.6;
+    --max-width: 800px;
+    --spacing: 1.5rem;
+    --border-radius: 2rem 0 0 2rem;
+    --btn-primary: #00ff41;
+    --btn-hover: #00cc33;
+  }
+
+  /* Reset */
+  *, *::before, *::after {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
+  }
+
+  /* Body */
+  body {
+    height: 100vh;
+    margin: 0;
+    font: 24px/1.2 var(--font-console);
+    background: var(--bg-screen);
+    color: var(--color-console);
+    overflow: hidden;
+    -webkit-font-smoothing: none;
+  }
+
+  /* Enlaces */
+  a, a:visited {
+    color: var(--color-console);
+    text-decoration: none;
+    border-bottom: .1rem solid var(--color-console);
+  }
+  a:hover, a:focus {
+    background: var(--color-console);
+    color: var(--text-bg);
+  }
+
+  /* CRT Overlay */
+  .crt-overlay {
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+  }
+
+  .crt-overlay .framep {
+    position: absolute;
+    inset: 2%;
+    border: 1rem solid;
+    border-color: var(--border-top) var(--border-sides) var(--border-bottom) var(--border-sides);
+    border-radius: var(--border-radius);
+    box-shadow:
+      inset 0 0 18rem #000,
+      inset 0 0 3rem #000,
+      0 0 10rem #000;
+    pointer-events: none;
+    z-index: 4;
+  }
+
+  .crt-overlay .scanlines,
+  .crt-overlay .glow {
+    position: absolute;
+    inset: 2%;
+    border-radius: var(--border-radius);
+    pointer-events: none;
+  }
+
+  .crt-overlay .scanlines {
+    background: linear-gradient(
+      to bottom,
+      rgba(255,255,255,0) 0%,
+      rgba(255,255,255,0) 50%,
+      rgba(0,0,0,0.1) 70%,
+      rgba(0,0,0,0.4) 100%
+    );
+    background-size: 100% .3rem;
+    z-index: 3;
+  }
+
+  .crt-overlay .glow {
+    opacity: .15;
+    background: radial-gradient(
+      circle at center,
+      rgba(27,212,89,1) 0%,
+      rgba(27,212,89,.88) 58%,
+      rgba(21,235,92,.57) 80%,
+      rgba(19,94,29,.27) 93%,
+      rgba(10,23,12,0) 100%
+    );
+    animation: crt-glow 60s infinite;
+    z-index: 2;
+  }
+
+  @keyframes crt-glow {
+    0%, 100% { opacity: .1; }
+    50% { opacity: .2; }
+  }
+
+  .crt-overlay .output {
+    position: absolute;
+    inset: 2%;
+    padding: 2rem;
+    background: var(--bg-console);
+    border-radius: var(--border-radius);
+    overflow-y: auto;
+    overflow-x: hidden;
+    color: var(--color-console);
+    text-shadow: 0 .2rem 1rem rgba(0,0,0,.2);
+    font-family: var(--font-console);
+    line-height: var(--line-height);
+    z-index: 1;
+  }
+
+  /* Títulos */
+  .crt-overlay .output h1,
+  .crt-overlay .output h2,
+  .crt-overlay .output h3 {
+    font-family: var(--font-console);
+    text-align: center;
+    margin-bottom: var(--spacing);
+  }
+  .crt-overlay .output h1 { font-size: clamp(24px, 5vw, 30px); }
+  .crt-overlay .output h2 { font-size: clamp(22px, 4.5vw, 28px); }
+  .crt-overlay .output h3 { font-size: clamp(20px, 4vw, 26px); }
+
+  /* Párrafos con efecto terminal */
+  .crt-overlay .output p {
+    margin-bottom: 1rem;
+    text-align: left;
+    font-size: 1rem;
+    max-width: var(--max-width);
+    margin-left: auto;
+    margin-right: auto;
+    color: var(--text-bg);
+    opacity: 0;
+    position: relative;
+  }
+
+  .crt-overlay .output p.visible {
+    opacity: 1;
+  }
+
+  .crt-overlay .output p .char {
+    opacity: 0;
+    display: inline-block;
+    animation: typeChar 0.05s forwards;
+  }
+
+  @keyframes typeChar {
+    to { opacity: 1; }
+  }
+
+  /* Cursor parpadeante */
+  .cursor {
+    display: inline-block;
+    width: 10px;
+    height: 20px;
+    background: var(--color-console);
+    animation: blink 1s infinite;
+    vertical-align: text-bottom;
+  }
+
+  @keyframes blink {
+    0%, 49% { opacity: 1; }
+    50%, 100% { opacity: 0; }
+  }
+
+  /* Links sociales */
+  .crt-overlay .output a.social {
+    color: #0366d6;
+    text-decoration: underline;
+  }
+
+  /* Selección */
+  ::selection, ::-moz-selection {
+    background: var(--color-console);
+    color: #031e11;
+  }
+
+  /* Header transformable */
+  .header-container {
+    transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+    text-align: center;
+    padding: 1rem 0;
+  }
+
+  .header-container.compact {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    background: var(--bg-console);
+    z-index: 100;
+    padding: 0.5rem;
+    border-bottom: 2px solid var(--color-console);
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    max-width: 100%;
+    margin: 0;
+  }
+
+  .header-container.compact h1 {
+    font-size: 1.5rem;
+    margin: 0;
+    margin-left: 1rem;
+  }
+
+  .header-container.compact .glitch-wrapper {
+    width: 40px;
+    height: 40px;
+    margin: 0;
+  }
+
+  /* Logo y título en modo compacto */
+  .logo-title-wrapper {
+    display: flex;
+    align-items: center;
+    gap: 1rem;
+  }
+
+  /* Navegación en modo compacto */
+  .nav-menu {
+    display: flex;
+    gap: 1rem;
+    margin-right: 1rem;
+  }
+
+  .nav-menu .btn-terminal {
+    padding: 0.4rem 0.8rem;
+    font-size: 0.9rem;
+    border-width: 1px;
+  }
+
+  /* Glitch Effect */
+  .glitch-wrapper {
+    width: 80px;
+    height: 80px;
+    margin: 0 auto;
+    position: relative;
+    overflow: hidden;
+    transition: all 0.6s ease;
+  }
+
+  .glitch {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    position: relative;
+    z-index: 1;
+  }
+
+  /* Botones container */
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 0.8rem;
+    flex-wrap: wrap;
+    margin: 1.5rem 0;
+    transition: all 0.6s ease;
+  }
+
+  /* Botones estilo terminal más pequeños */
+  .btn-terminal {
+    display: inline-block;
+    padding: 0.5rem 1rem;
+    background: transparent;
+    color: var(--btn-primary);
+    border: 2px solid var(--btn-primary);
+    border-radius: 0;
+    font-family: var(--font-console);
+    font-size: 0.9rem;
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  /* Ajuste del título principal */
+  .crt-overlay .output h1 {
+    font-size: clamp(20px, 4vw, 26px);
+    margin-bottom: 1rem;
+  }
+
+  /* Preview de introducción */
+  #intro-preview {
+    color: var(--color-console);
+    text-align: center;
+    padding: 1rem 0;
+    min-height: 10vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  #intro-preview p {
+    font-size: 1rem;
+    margin-bottom: 1rem;
+    opacity: 1;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+
+  /* Botón leer más más visible */
+ .btn-terminal.read-more {
+  background: transparent;
+  margin-top: 1rem; /* <-- menos espacio */
+  font-size: 1.1rem;
+  padding: 0.7rem 1.5rem;
+  border: 3px solid var(--btn-primary);
+  animation: pulse 2s infinite;
+}
+
+  }
+
+  @keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); }
+    70% { box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); }
+  }
+
+  /* Contenido completo */
+  #full-content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+    padding-top: 80px; /* Espacio para el header fijo */
+  }
+
+  #full-content.visible {
+    opacity: 1;
+  }
+
+  /* Ajuste de la pantalla CRT */
+  .crt-overlay .output {
+    padding: 1rem;
+  }
+
+  @keyframes glitch-anim {
+    0% {
+      clip-path: inset(0% 0% 66% 0%);
+      transform: translate(0, 0);
+    }
+    10% {
+      clip-path: inset(34% 0% 0% 0%);
+      transform: translate(-2px, -2px);
+    }
+    20% {
+      clip-path: inset(0% 0% 50% 0%);
+      transform: translate(2px, 2px);
+    }
+    30% {
+      clip-path: inset(50% 0% 0% 0%);
+      transform: translate(-2px, 2px);
+    }
+    40% {
+      clip-path: inset(0% 0% 30% 0%);
+      transform: translate(2px, -2px);
+    }
+    50% {
+      clip-path: inset(20% 0% 60% 0%);
+      transform: translate(0, 0);
+    }
+    60% {
+      clip-path: inset(60% 0% 20% 0%);
+      transform: translate(-1px, 1px);
+    }
+    70% {
+      clip-path: inset(10% 0% 70% 0%);
+      transform: translate(1px, -1px);
+    }
+    80% {
+      clip-path: inset(70% 0% 10% 0%);
+      transform: translate(-1px, -1px);
+    }
+    90% {
+      clip-path: inset(30% 0% 40% 0%);
+      transform: translate(1px, 1px);
+    }
+    100% {
+      clip-path: inset(0% 0% 0% 0%);
+      transform: translate(0, 0);
+    }
+  }
+
+  /* Botones container */
+  .btn-container {
+    display: flex;
+    justify-content: center;
+    gap: 1rem;
+    flex-wrap: wrap;
+    margin: 2rem 0;
+  }
+
+  /* Botones estilo terminal */
+  .btn-terminal {
+    display: inline-block;
+    padding: 0.75rem 1.5rem;
+    background: transparent;
+    color: var(--btn-primary);
+    border: 2px solid var(--btn-primary);
+    border-radius: 0;
+    font-family: var(--font-console);
+    text-decoration: none;
+    cursor: pointer;
+    transition: all 0.3s;
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .btn-terminal::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 100%;
+    height: 100%;
+    background: var(--btn-primary);
+    transition: left 0.3s;
+    z-index: -1;
+  }
+
+  .btn-terminal:hover::before {
+    left: 0;
+  }
+
+  .btn-terminal:hover {
+    color: var(--bg-console);
+    text-shadow: none;
+    border-color: var(--btn-primary);
+  }
+
+  /* Efecto TV */
+  #static-overlay {
+    position: fixed;
+    top: 0; left: 0;
+    width: 100vw; height: 100vh;
+    background: black;
+    z-index: 10000;
+    opacity: 1;
+    transition: opacity 1s ease-out;
+    pointer-events: none;
+  }
+  #static-overlay canvas {
+    display: block;
+    width: 100%;
+    height: 100%;
+  }
+  #app {
+    opacity: 0;
+    transition: opacity 1s ease-out;
+  }
+
+  /* Preview de introducción */
+  #intro-preview {
+    color: var(--color-console);
+    text-align: center;
+    padding: 2rem 0;
+  }
+
+  #intro-preview p {
+    font-size: 1.1rem;
+    margin-bottom: 1.5rem;
+    opacity: 1;
+  }
+
+  /* Contenido completo */
+  #full-content {
+    opacity: 0;
+    transition: opacity 0.5s ease;
+  }
+
+  #full-content.visible {
+    opacity: 1;
+  }
+
+  /* Secciones de contenido */
+  .content-section {
+    opacity: 0;
+    transform: translateY(20px);
+    transition: all 0.5s ease;
+  }
+
+  .content-section.visible {
+    opacity: 1;
+    transform: translateY(0);
+  }
+
+  .content-section.hidden {
+    display: none;
+  }
+
+  /* Botón leer más */
+  .btn-terminal.read-more {
+    background: transparent;
+    margin-top: 1rem;
+  }
+
+  /* Responsive */
+  @media (max-width: 768px) {
+    .btn-container {
+      flex-direction: column;
+      align-items: center;
+    }
+    .btn-terminal {
+      width: 80%;
+      text-align: center;
+    }
+  }
+
+  /* —————————————————————————————————————————————
+   Ajustes de centrado y ancho de header-container
+   ————————————————————————————————————————————— */
+
+/* 1. Centrar todo el texto y los botones dentro del área terminal */
+.crt-overlay .output {
+  text-align: center;
+}
+.btn-container {
+  width: 100%;               /* ocupa el ancho completo */
+  display: flex;
+  justify-content: center;   /* centra los botones */
+  align-items: center;
+}
+
+/* 2. Limitar el ancho del header-container al 90%,
+      separarlo del borde y colocarlo detrás */
+.header-container {
+  max-width: 90%;
+  margin: calc(4%) auto 0; /
+  position: relative;
+  z-index: 1;
+  text-align: center;
+}
+
+/* 3. Ajustes para el header en su forma “compact” (tras hacer click en “Leer más”) */
+.header-container.compact {
+  position: fixed !important;
+  top: 5% !important;        /* mismo inset que el marco */
+  left: 5% !important;       /* 5% de margen a ambos lados */
+  right: 5% !important;
+  max-width: 90% !important;
+  margin: 0 auto !important;
+  z-index: 1 !important;     /* detrás del marco */
+
+  display: flex !important;
+  align-items: center !important;
+  justify-content: space-between !important;
+  padding: 0.5rem !important;
+  background: var(--bg-console) !important;
+  border-bottom: 2px solid var(--color-console) !important;
+}
+
+/* 4. (Opcional) Anula cualquier regla previa que diera a .header-container.compact
+      un z-index mayor */
+
+  </style>
+
+  <!-- Schema adicional para SEO -->
+  <script type="application/ld+json">
+  {
+    "@context": "https://schema.org",
+    "@type": "WebSite",
+    "url": "https://kanzansio.digital",
+    "name": "Kanzansio Digital",
+    "description": "Digital Trafficker y Desarrollador Web en Mérida",
+    "potentialAction": {
+      "@type": "SearchAction",
+      "target": {
+        "@type": "EntryPoint",
+        "urlTemplate": "https://kanzansio.digital/?s={search_term_string}"
+      },
+      "query-input": "required name=search_term_string"
+    }
+  }
+  </script>
+</head>
+
+<body>
+  <div id="app">
+    <section class="screen">
+      <div class="content">
+        <div class="crt-overlay">
+          <div class="framep"></div>
+          <div class="scanlines"></div>
+          <div class="glow"></div>
+          <div class="output">
+            <!-- Header Container -->
+            <div class="header-container" id="header">
+              <h1>Kanzansio Digital Trafficker</h1>
+              
+              <div class="glitch-wrapper">
+                <img
+                  src="https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20transparente.gif"
+                  alt="Kanzansio Logo - Digital Trafficker"
+                  class="glitch"
+                />
+              </div>
+
+              <!-- Botones principales -->
+              <div class="btn-container" id="main-buttons">
+                <a href="https://wa.me/529994753666?text=Hola%20Eduardo,%20vi%20tu%20página%20web%20y%20me%20interesa%20hablar%20sobre%20un%20proyecto" 
+                   class="btn-terminal" 
+                   aria-label="Contactar por WhatsApp">
+                  Contáctame
+                </a>
+                <a href="https://kanzansio.digital/proyectos-web" 
+                   class="btn-terminal"
+                   aria-label="Ver proyectos web">
+                  Proyectos
+                </a>
+                <a href="https://kanzansio.digital/cv" 
+                   class="btn-terminal"
+                   aria-label="Ver currículum">
+                  CV
+                </a>
+              </div>
+            </div>
+
+            <!-- Contenido principal con efecto terminal -->
+            <div id="terminal-content">
+              <!-- Introducción inicial -->
+              <div id="intro-preview">
+                <div class="btn-container">
+                  <button class="btn-terminal read-more" onclick="startFullContent()">
+                    Leer más
+                  </button>
+                </div>
+              </div>
+
+              <!-- Contenido completo (oculto inicialmente) -->
+              <div id="full-content" class="hidden">
+                <!-- Sección Intro -->
+                <div class="content-section" data-section="intro">
+                  <p data-text="Hola, si estás leyendo esto, yo he dado mantenimiento o he creado esta web. Me presento: soy Eduardo Antonio Rosado Can, o solo dime Kanzansio. Soy un entusiasta de la programación con instrucción universitaria en Marketing y gestión empresarial. Sin embargo, mi otra escuela es ser autodidacta y buscar siempre soluciones."></p>
+                  
+                  <p data-text="Tengo más de una década de experiencia en el sector, puesto que empecé incluso antes de que ser Community Manager fuera un trabajo (a mis 14 años en este mundillo de la red) y Google indexara el término de Digital Trafficker."></p>
+                  
+                  <p data-text="Si buscas a alguien que sepa desde crear páginas web, hasta producción audiovisual para influencers como son Mr Bubus o Nación Pelaná, yo soy tu mejor opción."></p>
+                </div>
+
+                <!-- Sección Mejor Opción -->
+                <div class="content-section" data-section="mejor-opcion">
+                  <h2>¿Qué me hace tu mejor opción como Digital Trafficker?</h2>
+
+                  <p data-text="• Experiencia temprana y continua: llevo más de diez años operando en el mundo digital, desde la creación técnica hasta el posicionamiento y tráfico. He hecho desde páginas, hasta diseño gráfico y una que otra cuenta de OnlyFans monetizada (que no son mías, yo solo ayudé)."></p>
+
+                  <p data-text="• Conocimientos multidisciplinarios: desarrollo sitios web optimizados para SEO, rendimiento y accesibilidad; además produzco contenido audiovisual atractivo para influenciadores y marcas digitales."></p>
+
+                  <p data-text="• Aprendizaje constante: tengo formación formal en marketing y gestión empresarial, pero mi verdadero motor es la curiosidad autodidacta, la experiencia real y la adaptación a nuevos retos y tecnologías."></p>
+                </div>
+
+                <!-- Sección SEO y Automatización -->
+                <div class="content-section" data-section="seo-automatizacion">
+                  <h3>SEO dirigido y entusiasta de la automatización</h3>
+
+                  <p data-text="• Mi tesis universitaria trataba de chat bots con múltiples respuestas antes de que la IA fuera famosa"></p>
+
+                  <p data-text="• Entiendo el contenido desde la experiencia de un creador, no solo de un marketer"></p>
+
+                  <p data-text="• Tantos conocimientos de diseño, programación y storytelling en una sola persona"></p>
+
+                  <p data-text="• Esta página está creada con un plugin que yo, 2 Monsters y una IA ayudamos a desarrollar en una noche de insomnio. Imagina lo que puedo hacer por ti."></p>
+
+                  <br>
+                  <div class="btn-container">
+                    <a href="https://wa.me/529994753666?text=Hola%20Eduardo,%20quiero%20hablar%20sobre%20mi%20proyecto%20digital" 
+                       class="btn-terminal">
+                      Hablemos de tu proyecto
+                    </a>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <span class="cursor" id="cursor"></span>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <div id="static-overlay">
+    <canvas id="static-canvas"></canvas>
+  </div>
+
+  <script>
+    // Efecto de TV estática al cargar
+    window.addEventListener('load', () => {
+      const overlay = document.getElementById('static-overlay');
+      const canvas = document.getElementById('static-canvas');
+      const ctx = canvas.getContext('2d');
+      const app = document.getElementById('app');
+
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      window.addEventListener('resize', resize);
+
+      const noiseInterval = setInterval(() => {
+        const imgData = ctx.createImageData(canvas.width, canvas.height);
+        const buf = new Uint32Array(imgData.data.buffer);
+        for (let i = 0; i < buf.length; i++) {
+          const v = Math.random() * 255 | 0;
+          buf[i] = (255 << 24) | (v << 16) | (v << 8) | v;
+        }
+        ctx.putImageData(imgData, 0, 0);
+      }, 33);
+
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        app.style.opacity = '1';
+      }, 2000);
+
+      overlay.addEventListener('transitionend', () => {
+        clearInterval(noiseInterval);
+        overlay.remove();
+      });
+    });
+
+    // Efecto de escritura tipo terminal
+    class TerminalEffect {
+      constructor() {
+        this.cursor = document.getElementById('cursor');
+        this.sections = [];
+        this.currentSectionIndex = 0;
+        this.isTyping = false;
+        this.typingSpeed = 30; // ms por carácter
+        this.observer = null;
+        this.sectionDelay = 500; // delay entre secciones
+      }
+
+      async startFullContentAnimation() {
+        const fullContent = document.getElementById('full-content');
+        fullContent.classList.remove('hidden');
+        
+        // Obtener todas las secciones
+        this.sections = Array.from(fullContent.querySelectorAll('.content-section'));
+        
+        // Animar cada sección secuencialmente
+        for (let i = 0; i < this.sections.length; i++) {
+          await this.animateSection(this.sections[i]);
+          if (i < this.sections.length - 1) {
+            await this.wait(this.sectionDelay);
+          }
+        }
+      }
+
+      async animateSection(section) {
+        // Hacer visible la sección
+        section.classList.add('visible');
+        
+        // Obtener todos los elementos para animar
+        const elements = section.querySelectorAll('p[data-text], h2, h3');
+        
+        // Animar cada elemento
+        for (const element of elements) {
+          if (element.hasAttribute('data-text')) {
+            await this.typeElement(element);
+          }
+        }
+      }
+
+      async typeElement(element) {
+        if (this.isTyping) return;
+        
+        this.isTyping = true;
+        element.style.opacity = '1';
+
+        const text = element.getAttribute('data-text');
+        element.textContent = '';
+        
+        // Mover cursor al elemento actual
+        element.appendChild(this.cursor);
+
+        // Escribir carácter por carácter
+        for (let i = 0; i < text.length; i++) {
+          element.textContent = text.substring(0, i + 1);
+          element.appendChild(this.cursor);
+          await this.wait(this.typingSpeed);
+        }
+
+        this.isTyping = false;
+      }
+
+      wait(ms) {
+        return new Promise(resolve => setTimeout(resolve, ms));
+      }
+    }
+
+    // Variable global para el efecto terminal
+    let terminalEffect;
+
+    // Función para iniciar el contenido completo
+    async function startFullContent() {
+      // Obtener elementos
+      const preview = document.getElementById('intro-preview');
+      const fullContent = document.getElementById('full-content');
+      const header = document.getElementById('header');
+      const mainButtons = document.getElementById('main-buttons');
+      const title = header.querySelector('h1');
+      const logo = header.querySelector('.glitch-wrapper');
+      
+      // Ocultar preview
+      preview.style.display = 'none';
+      
+      // Transformar header a modo compacto
+      header.classList.add('compact');
+      
+      // Crear wrapper para logo y título
+      const logoTitleWrapper = document.createElement('div');
+      logoTitleWrapper.className = 'logo-title-wrapper';
+      logoTitleWrapper.appendChild(logo);
+      logoTitleWrapper.appendChild(title);
+      
+      // Crear menú de navegación
+      const navMenu = document.createElement('div');
+      navMenu.className = 'nav-menu';
+      
+      // Mover botones al menú de navegación
+      while (mainButtons.firstChild) {
+        navMenu.appendChild(mainButtons.firstChild);
+      }
+      
+      // Reorganizar header
+      header.innerHTML = '';
+      header.appendChild(logoTitleWrapper);
+      header.appendChild(navMenu);
+      
+      // Mostrar contenido completo
+      fullContent.classList.remove('hidden');
+      fullContent.classList.add('visible');
+      
+      // Iniciar animación del terminal
+      if (!terminalEffect) {
+        terminalEffect = new TerminalEffect();
+      }
+      
+      await terminalEffect.startFullContentAnimation();
+    }
+
+    // Iniciar después de que se cargue la página
+    window.addEventListener('load', () => {
+      // El preview se muestra inmediatamente
+      // El efecto terminal solo se inicia cuando el usuario hace clic en "Leer más"
+    });
+  </script>
+</body>
+</html>
