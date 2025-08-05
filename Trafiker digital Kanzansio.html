@@ -9,7 +9,6 @@
   <link rel="icon" href="https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20Logo-01.svg" type="image/svg+xml" />
   <meta name="author" content="Eduardo Antonio Rosado Can - Kanzansio" />
   <meta name="description" content="Eduardo Kanzansio: Digital Trafficker con +10 años de experiencia. Desarrollo web, SEO, producción audiovisual para influencers. Experto en automatización y marketing digital en Mérida." />
-
   <meta property="og:type" content="website" />
   <meta property="og:title" content="Eduardo Kanzansio - Digital Trafficker & Desarrollador Web" />
   <meta property="og:description" content="Más de 10 años creando soluciones digitales. Desde páginas web hasta producción para influencers como Mr Bubus. Tu mejor opción en marketing digital." />
@@ -20,7 +19,6 @@
   <meta name="twitter:title" content="Eduardo Kanzansio - Digital Trafficker" />
   <meta name="twitter:description" content="Tu mejor opción en marketing digital. Experiencia desde los 14 años en el mundo digital." />
   <meta name="twitter:image" content="https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20transparente.gif" />
-  
   <link rel="canonical" href="https://kanzansio.digital" />
   <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
   <link rel="alternate" hreflang="es-MX" href="https://kanzansio.digital" />
@@ -57,7 +55,6 @@
 
   <link href="https://fonts.googleapis.com/css?family=VT323&display=swap" rel="stylesheet" />
   <style>
-    /* 3.1: VARIABLES Y RESET */
     :root {
       --font-console: 'VT323', monospace; --color-console: rgba(159, 255, 232, 0.9); --bg-console: #031E11; --bg-screen: #383838; --border-top: #020202; --border-sides: #080808; --border-bottom: #121212; --text-bg: #ffffff; --max-width: 90%; --spacing: 1.5rem; --border-radius: 2rem 0 0 2rem; --btn-primary: #00ff41;
     }
@@ -65,7 +62,6 @@
     body { height: 100vh; font: 20px/1.2 var(--font-console); background: var(--bg-screen); color: var(--color-console); overflow: hidden; }
     ::selection, ::-moz-selection { background: var(--color-console); color: #031e11; }
     
-    /* 3.2: EFECTO CRT (PANTALLA) */
     .crt-overlay { position: fixed; inset: 0; z-index: 9999; }
     .crt-overlay .framep { position: absolute; inset: 2%; border: 1rem solid; border-color: var(--border-top) var(--border-sides) var(--border-bottom) var(--border-sides); border-radius: var(--border-radius); box-shadow: inset 0 0 18rem #000, inset 0 0 3rem #000, 0 0 10rem #000; pointer-events: none; z-index: 4; }
     .crt-overlay .scanlines, .crt-overlay .glow { position: absolute; inset: 2%; border-radius: var(--border-radius); pointer-events: none; }
@@ -74,19 +70,10 @@
     @keyframes crt-glow { 0%, 100% { opacity: .1; } 50% { opacity: .2; } }
     .crt-overlay .output { position: absolute; inset: 2%; padding: 1rem; background: var(--bg-console); border-radius: var(--border-radius); overflow-y: auto; overflow-x: hidden; z-index: 1; text-align: center; }
 
-    /* ✅ NUEVO: Máscara superior para ocultar texto al hacer scroll */
     .scroll-mask-top {
-      position: sticky;
-      top: -1rem; /* -1rem para que no interfiera con el padding del contenedor */
-      left: 0;
-      width: 100%;
-      height: 3rem; /* Altura del degradado */
-      z-index: 101; /* Por encima del texto pero por debajo del header */
-      background: linear-gradient(to bottom, var(--bg-console) 60%, transparent);
-      pointer-events: none; /* Para que no bloquee el click */
+      position: sticky; top: -1rem; left: 0; width: 100%; height: 3rem; z-index: 101; background: linear-gradient(to bottom, var(--bg-console) 60%, transparent); pointer-events: none;
     }
 
-    /* 3.3: HEADER Y NAVEGACIÓN */
     .header-container { max-width: 90%; margin: 0 auto; position: relative; z-index: 102; text-align: center; transition: all 0.6s cubic-bezier(0.4, 0, 0.2, 1); padding: 1rem 0; }
     .header-container.compact { position: fixed !important; top: 5% !important; left: 5% !important; right: 5% !important; max-width: 90% !important; margin: 0 auto !important; z-index: 102 !important; display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 0.5rem !important; background: var(--bg-console) !important; border-bottom: 2px solid var(--color-console) !important; }
     .header-container.compact h1 { font-size: 1.5rem; margin: 0 0 0 1rem; }
@@ -97,20 +84,18 @@
     .glitch-wrapper { width: 25vh; height: 25vh; margin: 0 auto; position: relative; overflow: hidden; transition: all 0.6s ease; }
     .glitch { display: block; width: 100%; height: 100%; object-fit: contain; }
 
-    /* 3.4: CONTENIDO Y TIPOGRAFÍA */
-    main#terminal-content { transition: padding-top 0.5s ease; padding-top: calc(4vh); }
-    h1 { font-size: clamp(20px, 4vw, 26px); margin-bottom: 1rem; }
-    h2 { font-size: clamp(22px, 4.5vw, 28px); margin-bottom: var(--spacing); }
-    h3 { font-size: clamp(20px, 4vw, 26px); margin-bottom: var(--spacing); }
+    main#terminal-content { transition: padding-top 0.5s ease; padding-top: calc(2vh); }
+    h1, h2, h3 { margin-bottom: var(--spacing); }
+    h1 { font-size: clamp(20px, 4vw, 26px); }
+    h2 { font-size: clamp(22px, 4.5vw, 28px); }
+    h3 { font-size: clamp(20px, 4vw, 26px); }
     p { margin-bottom: 1rem; text-align: left; font-size: 1rem; max-width: var(--max-width); margin-left: auto; margin-right: auto; color: var(--text-bg); opacity: 0; position: relative; }
     p.visible { opacity: 1; }
     #intro-preview { padding: 1rem 0; min-height: 10vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
-    #full-content { opacity: 0; transition: opacity 0.5s ease-out; }
-    #full-content.visible { opacity: 1; }
-    .content-section { opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
-    .content-section.visible { opacity: 1; transform: translateY(0); }
+    
+    .sequential-section { display: none; opacity: 0; transform: translateY(20px); transition: all 0.5s ease; }
+    .sequential-section.visible { display: block; opacity: 1; transform: translateY(0); }
 
-    /* 3.5: BOTONES Y ELEMENTOS INTERACTIVOS */
     .btn-container { display: flex; justify-content: center; gap: 1rem; flex-wrap: wrap; margin: 1.5rem 0; }
     .btn-terminal { display: inline-block; padding: 0.75rem 1.5rem; background: transparent; color: var(--btn-primary); border: 2px solid var(--btn-primary); font-family: var(--font-console); text-decoration: none; cursor: pointer; transition: all 0.3s; text-transform: uppercase; position: relative; overflow: hidden; }
     .btn-terminal::before { content: ''; position: absolute; top: 0; left: -100%; width: 100%; height: 100%; background: var(--btn-primary); transition: left 0.3s; z-index: -1; }
@@ -122,21 +107,35 @@
     .intro-prompt-container { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
     .intro-prompt-container .cursor { position: relative; animation: blink 1s infinite; display: inline-block; width: 10px; height: 24px; background: var(--color-console); vertical-align: middle; }
 
-    /* 3.6: EFECTOS Y ANIMACIONES JS */
     #static-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 10000; opacity: 1; transition: opacity 1s ease-out; pointer-events: none; }
     #static-overlay canvas { display: block; width: 100%; height: 100%; }
     #app { opacity: 0; transition: opacity 1s ease-out; }
     .cursor.typing { display: inline-block; width: 10px; height: 20px; background: var(--color-console); animation: blink 1s infinite; vertical-align: text-bottom; }
     @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
-    /* 3.7: DISEÑO RESPONSIVO */
+    /* ✅ REGLAS PARA MÓVILES MEJORADAS */
     @media (max-width: 768px) {
-      .header-container.compact { flex-direction: column; gap: 1rem; padding: 1rem !important; }
-      .logo-title-wrapper { justify-content: center; width: 100%; }
-      .nav-menu { width: 100%; margin-right: 0; justify-content: center; }
-      .nav-menu .btn-terminal { flex-grow: 1; text-align: center; }
-      .btn-container { flex-direction: column; align-items: center; }
-      .btn-terminal { width: 70%; text-align: center; }
+      body {
+        font-size: 22px; /* Aumenta el tamaño de la fuente base en móviles */
+      }
+      .header-container.compact { 
+        flex-direction: column; gap: 0.5rem; padding: 0.5rem !important; 
+      }
+      .logo-title-wrapper { 
+        justify-content: center; width: 100%; 
+      }
+      .nav-menu { 
+        width: 100%; margin-right: 0; justify-content: center; display: flex;
+      }
+      .nav-menu .btn-terminal { 
+        flex-grow: 1; text-align: center; font-size: 0.8rem; padding: 0.4rem;
+      }
+      .btn-container { 
+        flex-direction: row; align-items: center; 
+      }
+      .btn-terminal { 
+        width: auto; text-align: center; 
+      }
       .glitch-wrapper { width: 20vh; height: 20vh; }
     }
   </style>
@@ -168,38 +167,43 @@
             <main id="terminal-content">
               <div id="intro-preview">
                 <div class="intro-prompt-container">
-                  <button class="btn-terminal read-more" onclick="startFullContent()">Leer más</button>
+                  <button class="btn-terminal read-more" id="read-more-btn">Leer más</button>
                   <span class="cursor" id="cursor"></span>
                 </div>
               </div>
-<!--Primera Parte a Mostrar -->
-              <div id="full-content" style="display: none;">
-                <section class="content-section" data-section="intro">
-                  <p data-text="Hola, si estás leyendo esto, yo he dado mantenimiento o he creado esta web. Me presento: soy Eduardo Antonio Rosado Can, o solo dime Kanzansio. Soy un entusiasta de la programación con instrucción universitaria en Marketing y gestión empresarial. Sin embargo, mi otra escuela es ser autodidacta y buscar siempre soluciones."></p>
-                  <p data-text="Tengo más de una década de experiencia en el sector, puesto que empecé incluso antes de que ser Community Manager fuera un trabajo (a mis 14 años en este mundillo de la red) y Google indexara el término de Digital Trafficker."></p>
-                  <p data-text="Si buscas a alguien que sepa desde crear páginas web, hasta producción audiovisual para influencers como son Mr Bubus o Nación Pelaná, yo soy tu mejor opción."></p>
-                </section>
-                <section class="content-section" data-section="mejor-opcion">
-                  <h2>¿Qué me hace tu mejor opción como Digital Trafficker?</h2>
-                  <p data-text="• Experiencia temprana y continua: llevo más de diez años operando en el mundo digital, desde la creación técnica hasta el posicionamiento y tráfico. He hecho desde páginas, hasta diseño gráfico y una que otra cuenta de OnlyFans monetizada (que no son mías, yo solo ayudé)."></p>
-                  <p data-text="• Conocimientos multidisciplinarios: desarrollo sitios web optimizados para SEO, rendimiento y accesibilidad; además produzco contenido audiovisual atractivo para influenciadores y marcas digitales."></p>
-                  <p data-text="• Aprendizaje constante: tengo formación formal en marketing y gestión empresarial, pero mi verdadero motor es la curiosidad autodidacta, la experiencia real y la adaptación a nuevos retos y tecnologías."></p>
-                </section>
-                <!--Segunda Parte a Mostrar -->
-                <section class="content-section" data-section="seo-automatizacion">
-                  <h3>SEO dirigido y entusiasta de la automatización</h3>
-                  <p data-text="• Mi tesis universitaria trataba de chat bots con múltiples respuestas antes de que la IA fuera famosa"></p>
-                  <p data-text="• Entiendo el contenido desde la experiencia de un creador, no solo de un marketer"></p>
-                  <p data-text="• Tantos conocimientos de diseño, programación y storytelling en una sola persona"></p>
-                  <p data-text="• Esta página está creada con un plugin que yo, 2 Monsters y una IA ayudamos a desarrollar en una noche de insomnio. Imagina lo que puedo hacer por ti."></p>
-                  <br>
-                  <div class="btn-container">
-                    <a href="https://wa.me/529994753666?text=Hola%20Eduardo,%20quiero%20hablar%20sobre%20mi%20proyecto%20digital" class="btn-terminal">Hablemos de tu proyecto</a>
-                  </div>
-                </section>
 
+              <div id="full-content">
+                <div class="sequential-section">
+                  <section class="content-section" data-section="intro">
+                    <p data-text="Hola, si estás leyendo esto, yo he dado mantenimiento o he creado esta web. Me presento: soy Eduardo Antonio Rosado Can, o solo dime Kanzansio. Soy un entusiasta de la programación con instrucción universitaria en Marketing y gestión empresarial. Sin embargo, mi otra escuela es ser autodidacta y buscar siempre soluciones."></p>
+                    <p data-text="Tengo más de una década de experiencia en el sector, puesto que empecé incluso antes de que ser Community Manager fuera un trabajo (a mis 14 años en este mundillo de la red) y Google indexara el término de Digital Trafficker."></p>
+                    <p data-text="Si buscas a alguien que sepa desde crear páginas web, hasta producción audiovisual para influencers como son Mr Bubus o Nación Pelaná, yo soy tu mejor opción."></p>
+                  </section>
+                </div>
+
+                <div class="sequential-section">
+                  <section class="content-section" data-section="mejor-opcion">
+                    <h2>¿Qué me hace tu mejor opción como Digital Trafficker?</h2>
+                    <p data-text="• Experiencia temprana y continua: llevo más de diez años operando en el mundo digital, desde la creación técnica hasta el posicionamiento y tráfico. He hecho desde páginas, hasta diseño gráfico y una que otra cuenta de OnlyFans monetizada (que no son mías, yo solo ayudé)."></p>
+                    <p data-text="• Conocimientos multidisciplinarios: desarrollo sitios web optimizados para SEO, rendimiento y accesibilidad; además produzco contenido audiovisual atractivo para influenciadores y marcas digitales."></p>
+                    <p data-text="• Aprendizaje constante: tengo formación formal en marketing y gestión empresarial, pero mi verdadero motor es la curiosidad autodidacta, la experiencia real y la adaptación a nuevos retos y tecnologías."></p>
+                  </section>
+                </div>
+                
+                <div class="sequential-section">
+                  <section class="content-section" data-section="seo-automatizacion">
+                    <h3>SEO dirigido y entusiasta de la automatización</h3>
+                    <p data-text="• Mi tesis universitaria trataba de chat bots con múltiples respuestas antes de que la IA fuera famosa"></p>
+                    <p data-text="• Entiendo el contenido desde la experiencia de un creador, no solo de un marketer"></p>
+                    <p data-text="• Tantos conocimientos de diseño, programación y storytelling en una sola persona"></p>
+                    <p data-text="• Esta página está creada con un plugin que yo, 2 Monsters y una IA ayudamos a desarrollar en una noche de insomnio. Imagina lo que puedo hacer por ti."></p>
+                    <br>
+                    <div class="btn-container">
+                      <a href="https://wa.me/529994753666?text=Hola%20Eduardo,%20quiero%20hablar%20sobre%20mi%20proyecto%20digital" class="btn-terminal">Hablemos de tu proyecto</a>
+                    </div>
+                  </section>
+                </div>
               </div>
-              <!--tercer Parte a Mostrar -->
               <span class="cursor typing" id="typing-cursor-placeholder" style="display: none;"></span>
             </main>
           </div>
@@ -213,13 +217,6 @@
   </div>
 
   <script>
-    /**
-     * @file Lógica principal de la aplicación.
-     * @description Maneja los efectos visuales de carga, la animación
-     * del terminal y la interactividad del header.
-     */
-    
-    // 5.1: Efecto de estática al cargar la página
     window.addEventListener('load', () => {
       const overlay = document.getElementById('static-overlay');
       const canvas = document.getElementById('static-canvas');
@@ -241,31 +238,11 @@
       overlay.addEventListener('transitionend', () => { clearInterval(noiseInterval); overlay.remove(); });
     });
 
-    /**
-     * @class TerminalEffect
-     * @description Maneja la animación de escritura tipo terminal.
-     */
     class TerminalEffect {
       constructor() {
         this.cursor = document.getElementById('typing-cursor-placeholder'); 
         this.isTyping = false; 
-        this.typingSpeed = 30; 
-        this.sectionDelay = 500;
-      }
-      async startFullContentAnimation() {
-        const sections = Array.from(document.querySelectorAll('#full-content .content-section'));
-        for (let i = 0; i < sections.length; i++) {
-          await this.animateSection(sections[i]);
-          if (i < sections.length - 1) await this.wait(this.sectionDelay);
-        }
-      }
-      async animateSection(section) {
-        section.classList.add('visible');
-        const elements = section.querySelectorAll('p[data-text], h2, h3');
-        for (const element of elements) {
-          if (element.hasAttribute('data-text')) await this.typeElement(element);
-          else element.style.opacity = '1';
-        }
+        this.typingSpeed = 30;
       }
       async typeElement(element) {
         if (this.isTyping) return;
@@ -278,40 +255,75 @@
         for (let i = 0; i < text.length; i++) {
           element.textContent = text.substring(0, i + 1);
           element.appendChild(this.cursor);
-          await this.wait(this.typingSpeed);
+          await new Promise(resolve => setTimeout(resolve, this.typingSpeed));
         }
+        this.cursor.style.display = 'none';
         this.isTyping = false;
       }
-      wait(ms) { return new Promise(resolve => setTimeout(resolve, ms)); }
     }
-    let terminalEffect;
 
-    /**
-     * @function startFullContent
-     * @description Función principal que se ejecuta al hacer clic en "Leer más".
-     */
-    async function startFullContent() {
+    // --- LÓGICA PARA REVELAR CONTENIDO POR SECCIONES ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const terminalEffect = new TerminalEffect();
+      const readMoreBtn = document.getElementById('read-more-btn');
+      const sections = document.querySelectorAll('.sequential-section');
+      let currentSectionIndex = 0;
+      let isFirstClick = true;
+
+      readMoreBtn.addEventListener('click', async () => {
+        // En el primer clic, configurar el layout
+        if (isFirstClick) {
+          setupCompactLayout();
+          isFirstClick = false;
+        }
+
+        // Revelar la sección actual
+        if (currentSectionIndex < sections.length) {
+          const sectionToReveal = sections[currentSectionIndex];
+          sectionToReveal.classList.add('visible');
+
+          // Animar cada elemento dentro de la sección
+          const elementsToAnimate = sectionToReveal.querySelectorAll('[data-text], h2, h3');
+          for (const element of elementsToAnimate) {
+            if (element.hasAttribute('data-text')) {
+              await terminalEffect.typeElement(element);
+            } else {
+              element.style.opacity = '1';
+            }
+          }
+          currentSectionIndex++;
+        }
+
+        // Si ya no hay más secciones, ocultar el botón
+        if (currentSectionIndex >= sections.length) {
+          readMoreBtn.style.display = 'none';
+          document.getElementById('cursor').style.display = 'none';
+        }
+      });
+    });
+
+    function setupCompactLayout() {
       const preview = document.getElementById('intro-preview');
-      const fullContent = document.getElementById('full-content');
       const header = document.getElementById('header');
       const mainButtons = document.getElementById('main-buttons');
       const title = header.querySelector('h1');
       const logo = header.querySelector('.glitch-wrapper');
       const terminalContent = document.getElementById('terminal-content');
+      const initialCursor = document.getElementById('cursor');
 
+      // Ocultar la intro y el cursor inicial
       preview.style.display = 'none';
-      
-      // 1. Transforma el header a modo compacto
+      initialCursor.style.display = 'none';
+
+      // Transformar header
       header.classList.add('compact');
       
-      // 2. Calcula dinámicamente el padding superior del contenido
       const setPadding = () => {
           const headerHeight = header.offsetHeight;
           terminalContent.style.paddingTop = `${headerHeight + 15}px`;
       };
       setPadding();
       
-      // 3. Reestructura el DOM del header
       const logoTitleWrapper = document.createElement('div');
       logoTitleWrapper.className = 'logo-title-wrapper';
       logoTitleWrapper.appendChild(logo);
@@ -324,18 +336,7 @@
       header.innerHTML = '';
       header.appendChild(logoTitleWrapper);
       header.appendChild(navMenu);
-      
-      // 4. Muestra contenido e inicia animación
-      fullContent.style.display = 'block';
-      if (!terminalEffect) terminalEffect = new TerminalEffect();
-      
-      requestAnimationFrame(async () => {
-        await terminalEffect.wait(50);
-        fullContent.classList.add('visible');
-        await terminalEffect.startFullContentAnimation();
-      });
 
-      // 5. Recalcula el padding si la ventana cambia de tamaño
       window.addEventListener('resize', setPadding);
     }
   </script>
