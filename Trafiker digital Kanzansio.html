@@ -84,12 +84,12 @@
     .glitch-wrapper { width: 25vh; height: 25vh; margin: 0 auto; position: relative; overflow: hidden; transition: all 0.6s ease; }
     .glitch { display: block; width: 100%; height: 100%; object-fit: contain; }
 
-    main#terminal-content { transition: padding-top 0.5s ease; padding-top: calc(2vh); }
+    main#terminal-content { transition: padding-top 0.5s ease; padding-top: calc(4vh); }
     h1, h2, h3 { margin-bottom: var(--spacing); }
     h1 { font-size: clamp(20px, 4vw, 26px); }
     h2 { font-size: clamp(22px, 4.5vw, 28px); }
     h3 { font-size: clamp(20px, 4vw, 26px); }
-    p { margin-bottom: 1rem; text-align: left; font-size: 1.2rem; max-width: var(--max-width); margin-left: auto; margin-right: auto; color: var(--text-bg); opacity: 0; position: relative; }
+    p { margin-bottom: 1rem; text-align: left; font-size: 1rem; max-width: var(--max-width); margin-left: auto; margin-right: auto; color: var(--text-bg); opacity: 0; position: relative; }
     p.visible { opacity: 1; }
     #intro-preview { padding: 1rem 0; min-height: 10vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
     
@@ -113,29 +113,14 @@
     .cursor.typing { display: inline-block; width: 10px; height: 20px; background: var(--color-console); animation: blink 1s infinite; vertical-align: text-bottom; }
     @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
-    /* ✅ REGLAS PARA MÓVILES MEJORADAS */
     @media (max-width: 768px) {
-      body {
-        font-size: 22px; /* Aumenta el tamaño de la fuente base en móviles */
-      }
-      .header-container.compact { 
-        flex-direction: column; gap: 0.5rem; padding: 0.5rem !important; 
-      }
-      .logo-title-wrapper { 
-        justify-content: center; width: 100%; 
-      }
-      .nav-menu { 
-        width: 100%; margin-right: 0; justify-content: center; display: flex;
-      }
-      .nav-menu .btn-terminal { 
-        flex-grow: 1; text-align: center; font-size: 0.8rem; padding: 0.4rem;
-      }
-      .btn-container { 
-        flex-direction: row; align-items: center; 
-      }
-      .btn-terminal { 
-        width: auto; text-align: center; 
-      }
+      body { font-size: 22px; }
+      .header-container.compact { flex-direction: column; gap: 0.5rem; padding: 0.5rem !important; }
+      .logo-title-wrapper { justify-content: center; width: 100%; }
+      .nav-menu { width: 100%; margin-right: 0; justify-content: center; display: flex; }
+      .nav-menu .btn-terminal { flex-grow: 1; text-align: center; font-size: 0.8rem; padding: 0.4rem; }
+      .btn-container { flex-direction: row; align-items: center; }
+      .btn-terminal { width: auto; text-align: center; }
       .glitch-wrapper { width: 20vh; height: 20vh; }
     }
   </style>
@@ -174,7 +159,7 @@
 
               <div id="full-content">
                 <div class="sequential-section">
-                  <section class="content-section" data-section="intro">
+                  <section data-section="intro">
                     <p data-text="Hola, si estás leyendo esto, yo he dado mantenimiento o he creado esta web. Me presento: soy Eduardo Antonio Rosado Can, o solo dime Kanzansio. Soy un entusiasta de la programación con instrucción universitaria en Marketing y gestión empresarial. Sin embargo, mi otra escuela es ser autodidacta y buscar siempre soluciones."></p>
                     <p data-text="Tengo más de una década de experiencia en el sector, puesto que empecé incluso antes de que ser Community Manager fuera un trabajo (a mis 14 años en este mundillo de la red) y Google indexara el término de Digital Trafficker."></p>
                     <p data-text="Si buscas a alguien que sepa desde crear páginas web, hasta producción audiovisual para influencers como son Mr Bubus o Nación Pelaná, yo soy tu mejor opción."></p>
@@ -182,7 +167,7 @@
                 </div>
 
                 <div class="sequential-section">
-                  <section class="content-section" data-section="mejor-opcion">
+                  <section data-section="mejor-opcion">
                     <h2>¿Qué me hace tu mejor opción como Digital Trafficker?</h2>
                     <p data-text="• Experiencia temprana y continua: llevo más de diez años operando en el mundo digital, desde la creación técnica hasta el posicionamiento y tráfico. He hecho desde páginas, hasta diseño gráfico y una que otra cuenta de OnlyFans monetizada (que no son mías, yo solo ayudé)."></p>
                     <p data-text="• Conocimientos multidisciplinarios: desarrollo sitios web optimizados para SEO, rendimiento y accesibilidad; además produzco contenido audiovisual atractivo para influenciadores y marcas digitales."></p>
@@ -191,7 +176,7 @@
                 </div>
                 
                 <div class="sequential-section">
-                  <section class="content-section" data-section="seo-automatizacion">
+                  <section data-section="seo-automatizacion">
                     <h3>SEO dirigido y entusiasta de la automatización</h3>
                     <p data-text="• Mi tesis universitaria trataba de chat bots con múltiples respuestas antes de que la IA fuera famosa"></p>
                     <p data-text="• Entiendo el contenido desde la experiencia de un creador, no solo de un marketer"></p>
@@ -217,6 +202,7 @@
   </div>
 
   <script>
+    // --- EFECTO DE ESTÁTICA AL CARGAR ---
     window.addEventListener('load', () => {
       const overlay = document.getElementById('static-overlay');
       const canvas = document.getElementById('static-canvas');
@@ -234,15 +220,16 @@
         }
         ctx.putImageData(imgData, 0, 0);
       }, 33);
-      setTimeout(() => { overlay.style.opacity = '0'; app.style.opacity = '1'; }, 2000);
+      setTimeout(() => { overlay.style.opacity = '0'; app.style.opacity = '1'; }, 1000); // Reducido para ser más rápido
       overlay.addEventListener('transitionend', () => { clearInterval(noiseInterval); overlay.remove(); });
     });
 
+    // --- CLASE PARA EFECTO DE ESCRITURA ---
     class TerminalEffect {
       constructor() {
         this.cursor = document.getElementById('typing-cursor-placeholder'); 
         this.isTyping = false; 
-        this.typingSpeed = 30;
+        this.typingSpeed = 20; // Un poco más rápido
       }
       async typeElement(element) {
         if (this.isTyping) return;
@@ -262,7 +249,7 @@
       }
     }
 
-    // --- LÓGICA PARA REVELAR CONTENIDO POR SECCIONES ---
+    // --- LÓGICA PRINCIPAL DEL REVELADO SECUENCIAL ---
     document.addEventListener('DOMContentLoaded', () => {
       const terminalEffect = new TerminalEffect();
       const readMoreBtn = document.getElementById('read-more-btn');
@@ -271,18 +258,19 @@
       let isFirstClick = true;
 
       readMoreBtn.addEventListener('click', async () => {
-        // En el primer clic, configurar el layout
+        // En el primer clic, configura el layout compacto.
         if (isFirstClick) {
           setupCompactLayout();
           isFirstClick = false;
         }
 
-        // Revelar la sección actual
+        // Si hay secciones por revelar, procesa la siguiente.
         if (currentSectionIndex < sections.length) {
+          readMoreBtn.disabled = true; // Deshabilita el botón mientras se anima.
+          
           const sectionToReveal = sections[currentSectionIndex];
           sectionToReveal.classList.add('visible');
 
-          // Animar cada elemento dentro de la sección
           const elementsToAnimate = sectionToReveal.querySelectorAll('[data-text], h2, h3');
           for (const element of elementsToAnimate) {
             if (element.hasAttribute('data-text')) {
@@ -292,9 +280,10 @@
             }
           }
           currentSectionIndex++;
+          readMoreBtn.disabled = false; // Rehabilita el botón.
         }
 
-        // Si ya no hay más secciones, ocultar el botón
+        // Si ya no hay más secciones, oculta el botón.
         if (currentSectionIndex >= sections.length) {
           readMoreBtn.style.display = 'none';
           document.getElementById('cursor').style.display = 'none';
@@ -302,25 +291,27 @@
       });
     });
 
+    // --- FUNCIÓN PARA CONFIGURAR EL MODO COMPACTO ---
     function setupCompactLayout() {
-      const preview = document.getElementById('intro-preview');
+      const introContainer = document.querySelector('.intro-prompt-container');
       const header = document.getElementById('header');
       const mainButtons = document.getElementById('main-buttons');
       const title = header.querySelector('h1');
       const logo = header.querySelector('.glitch-wrapper');
       const terminalContent = document.getElementById('terminal-content');
-      const initialCursor = document.getElementById('cursor');
 
-      // Ocultar la intro y el cursor inicial
-      preview.style.display = 'none';
-      initialCursor.style.display = 'none';
-
-      // Transformar header
+      // Mueve el botón a la parte inferior del contenedor principal
+      // para que no se elimine al reorganizar el header.
+      const outputContainer = document.getElementById('output-container');
+      outputContainer.appendChild(introContainer);
+      
+      // Transforma el header.
       header.classList.add('compact');
       
       const setPadding = () => {
           const headerHeight = header.offsetHeight;
-          terminalContent.style.paddingTop = `${headerHeight + 15}px`;
+          // ✅ FIX: Se reduce el padding extra para que el espacio sea menor.
+          terminalContent.style.paddingTop = `${headerHeight + 5}px`;
       };
       setPadding();
       
