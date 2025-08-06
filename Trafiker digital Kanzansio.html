@@ -84,7 +84,7 @@
     .glitch-wrapper { width: 25vh; height: 25vh; margin: 0 auto; position: relative; overflow: hidden; transition: all 0.6s ease; }
     .glitch { display: block; width: 100%; height: 100%; object-fit: contain; }
 
-    main#terminal-content { transition: padding-top 0.5s ease; padding-top: calc(4vh); }
+    main#terminal-content { transition: padding-top 0.5s ease; }
     h1, h2, h3 { margin-bottom: var(--spacing); }
     h1 { font-size: clamp(20px, 4vw, 26px); }
     h2 { font-size: clamp(22px, 4.5vw, 28px); }
@@ -136,7 +136,6 @@
           <div class="glow"></div>
           <div class="output" id="output-container">
             <div class="scroll-mask-top"></div>
-
             <header class="header-container" id="header">
               <h1>Kanzansio Digital Trafficker</h1>
               <div class="glitch-wrapper">
@@ -220,7 +219,7 @@
         }
         ctx.putImageData(imgData, 0, 0);
       }, 33);
-      setTimeout(() => { overlay.style.opacity = '0'; app.style.opacity = '1'; }, 1000); // Reducido para ser más rápido
+      setTimeout(() => { overlay.style.opacity = '0'; app.style.opacity = '1'; }, 1000);
       overlay.addEventListener('transitionend', () => { clearInterval(noiseInterval); overlay.remove(); });
     });
 
@@ -229,7 +228,7 @@
       constructor() {
         this.cursor = document.getElementById('typing-cursor-placeholder'); 
         this.isTyping = false; 
-        this.typingSpeed = 20; // Un poco más rápido
+        this.typingSpeed = 20;
       }
       async typeElement(element) {
         if (this.isTyping) return;
@@ -249,7 +248,7 @@
       }
     }
 
-    // --- LÓGICA PRINCIPAL DEL REVELADO SECUENCIAL ---
+    // --- LÓGICA PRINCIPAL DE LA PÁGINA ---
     document.addEventListener('DOMContentLoaded', () => {
       const terminalEffect = new TerminalEffect();
       const readMoreBtn = document.getElementById('read-more-btn');
@@ -258,19 +257,15 @@
       let isFirstClick = true;
 
       readMoreBtn.addEventListener('click', async () => {
-        // En el primer clic, configura el layout compacto.
         if (isFirstClick) {
           setupCompactLayout();
           isFirstClick = false;
         }
 
-        // Si hay secciones por revelar, procesa la siguiente.
         if (currentSectionIndex < sections.length) {
-          readMoreBtn.disabled = true; // Deshabilita el botón mientras se anima.
-          
+          readMoreBtn.disabled = true;
           const sectionToReveal = sections[currentSectionIndex];
           sectionToReveal.classList.add('visible');
-
           const elementsToAnimate = sectionToReveal.querySelectorAll('[data-text], h2, h3');
           for (const element of elementsToAnimate) {
             if (element.hasAttribute('data-text')) {
@@ -280,10 +275,9 @@
             }
           }
           currentSectionIndex++;
-          readMoreBtn.disabled = false; // Rehabilita el botón.
+          readMoreBtn.disabled = false;
         }
 
-        // Si ya no hay más secciones, oculta el botón.
         if (currentSectionIndex >= sections.length) {
           readMoreBtn.style.display = 'none';
           document.getElementById('cursor').style.display = 'none';
@@ -300,18 +294,15 @@
       const logo = header.querySelector('.glitch-wrapper');
       const terminalContent = document.getElementById('terminal-content');
 
-      // Mueve el botón a la parte inferior del contenedor principal
-      // para que no se elimine al reorganizar el header.
-      const outputContainer = document.getElementById('output-container');
-      outputContainer.appendChild(introContainer);
+      // ✅ FIX: Oculta el contenedor del botón en lugar del botón en sí
+      introContainer.style.display = 'none';
       
-      // Transforma el header.
       header.classList.add('compact');
       
       const setPadding = () => {
           const headerHeight = header.offsetHeight;
-          // ✅ FIX: Se reduce el padding extra para que el espacio sea menor.
-          terminalContent.style.paddingTop = `${headerHeight + 5}px`;
+          // ✅ FIX: Se ajusta el padding a la altura del header + un margen mínimo
+          terminalContent.style.paddingTop = `${headerHeight + 10}px`;
       };
       setPadding();
       
@@ -327,6 +318,11 @@
       header.innerHTML = '';
       header.appendChild(logoTitleWrapper);
       header.appendChild(navMenu);
+
+      // ✅ FIX: El botón "Leer más" se reinserta para que siga funcionando
+      const outputContainer = document.getElementById('output-container');
+      outputContainer.appendChild(introContainer);
+      introContainer.style.display = 'inline-flex'; // Se vuelve a mostrar
 
       window.addEventListener('resize', setPadding);
     }
