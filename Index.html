@@ -565,6 +565,180 @@
       background-color: var(--bg-console);
     }
 
+    /* PWA Install Terminal Popup */
+    .install-overlay {
+      position: fixed;
+      top: 0;
+      left: 0;
+      width: 100vw;
+      height: 100vh;
+      background: rgba(0, 0, 0, 0.8);
+      z-index: 10001;
+      display: none;
+      justify-content: center;
+      align-items: center;
+      backdrop-filter: blur(2px);
+    }
+    
+    .install-overlay.visible {
+      display: flex;
+      animation: fadeIn 0.3s ease;
+    }
+    
+    .install-terminal {
+      background: var(--bg-console);
+      border: 2px solid var(--color-console);
+      border-radius: 0.5rem;
+      padding: 0;
+      max-width: 90%;
+      width: 400px;
+      box-shadow: 
+        0 0 20px rgba(159, 255, 232, 0.5),
+        inset 0 0 20px rgba(0, 0, 0, 0.5);
+      animation: terminalOpen 0.4s ease;
+      position: relative;
+    }
+    
+    .install-terminal-header {
+      background: linear-gradient(to bottom, rgba(159, 255, 232, 0.2), rgba(159, 255, 232, 0.1));
+      border-bottom: 2px solid var(--color-console);
+      padding: 0.5rem 1rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      font-size: 0.9rem;
+      text-transform: uppercase;
+    }
+    
+    .install-terminal-title {
+      color: var(--color-console);
+      font-weight: normal;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+    
+    .install-terminal-title::before {
+      content: ">";
+      animation: blink 1s infinite;
+    }
+    
+    .install-close {
+      width: 20px;
+      height: 20px;
+      border: 1px solid var(--color-console);
+      background: transparent;
+      color: var(--color-console);
+      cursor: pointer;
+      position: relative;
+      transition: all 0.3s;
+      font-size: 12px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+    
+    .install-close:hover {
+      background: var(--color-console);
+      color: var(--bg-console);
+    }
+    
+    .install-terminal-body {
+      padding: 1.5rem;
+      text-align: center;
+    }
+    
+    .install-terminal-icon {
+      width: 60px;
+      height: 60px;
+      margin: 0 auto 1rem;
+      display: block;
+      filter: drop-shadow(0 0 10px rgba(159, 255, 232, 0.5));
+      animation: pulse 2s infinite;
+    }
+    
+    .install-terminal-text {
+      color: var(--color-console);
+      margin-bottom: 1.5rem;
+      font-size: 1.1rem;
+      line-height: 1.4;
+    }
+    
+    .install-terminal-text .highlight {
+      color: var(--btn-primary);
+      font-weight: bold;
+    }
+    
+    .install-terminal-actions {
+      display: flex;
+      gap: 1rem;
+      justify-content: center;
+      flex-wrap: wrap;
+    }
+    
+    .install-terminal-btn {
+      padding: 0.6rem 1.2rem;
+      background: transparent;
+      color: var(--btn-primary);
+      border: 2px solid var(--btn-primary);
+      font-family: var(--font-console);
+      text-decoration: none;
+      cursor: pointer;
+      transition: all 0.3s;
+      text-transform: uppercase;
+      position: relative;
+      overflow: hidden;
+      font-size: 0.9rem;
+    }
+    
+    .install-terminal-btn.primary {
+      background: var(--btn-primary);
+      color: var(--bg-console);
+    }
+    
+    .install-terminal-btn:hover {
+      transform: translateY(-2px);
+      box-shadow: 0 5px 15px rgba(0, 230, 61, 0.3);
+    }
+    
+    .install-terminal-btn.primary:hover {
+      background: var(--btn-primary-hover);
+      border-color: var(--btn-primary-hover);
+    }
+    
+    .install-command {
+      background: rgba(0, 0, 0, 0.3);
+      border: 1px solid rgba(159, 255, 232, 0.3);
+      padding: 0.5rem;
+      margin: 1rem 0;
+      border-radius: 0.25rem;
+      font-family: var(--font-console);
+      font-size: 0.85rem;
+      color: var(--color-console);
+      text-align: left;
+    }
+    
+    .install-command::before {
+      content: "$ ";
+      color: var(--btn-primary);
+    }
+    
+    @keyframes terminalOpen {
+      from {
+        transform: scale(0.9) translateY(-20px);
+        opacity: 0;
+      }
+      to {
+        transform: scale(1) translateY(0);
+        opacity: 1;
+      }
+    }
+    
+    @keyframes fadeIn {
+      from { opacity: 0; }
+      to { opacity: 1; }
+    }
+
     /* Mejoras para móvil */
     @media (max-width: 768px) {
       body {
@@ -632,40 +806,29 @@
         width: 35px;
         height: 35px;
       }
+      
+      .install-terminal {
+        width: 95%;
+        margin: 1rem;
+      }
+      
+      .install-terminal-body {
+        padding: 1rem;
+      }
+      
+      .install-terminal-actions {
+        flex-direction: column;
+      }
+      
+      .install-terminal-btn {
+        width: 100%;
+      }
     }
     
     /* Mejoras para PC */
     @media (min-width: 992px) {
       p {
         font-size: 22px;
-      }
-    }
-
-    /* Instalación PWA */
-    .install-prompt {
-      position: fixed;
-      bottom: 20px;
-      right: 20px;
-      background: var(--bg-console);
-      border: 2px solid var(--btn-primary);
-      padding: 1rem;
-      border-radius: 0.5rem;
-      max-width: 300px;
-      z-index: 1000;
-      display: none;
-    }
-    
-    .install-prompt.visible {
-      display: block;
-      animation: slideIn 0.5s ease;
-    }
-    
-    @keyframes slideIn {
-      from {
-        transform: translateX(100%);
-      }
-      to {
-        transform: translateX(0);
       }
     }
   </style>
@@ -749,7 +912,7 @@
                     <p data-text="• Entiendo el contenido desde la experiencia de un creador, no solo de un marketer"></p>
                     <p data-text="• Tantos conocimientos de diseño, programación y storytelling en una sola persona"></p>
                     <p data-text="• Esta página está creada con un plugin que yo, 2 Monsters y una IA ayudamos a desarrollar en una noche de insomnio. Imagina lo que puedo hacer por ti."></p>
-                    </section>
+                  </section>
                 </div>
               </div>
               <span class="cursor typing" id="typing-cursor-placeholder" style="display: none;" aria-hidden="true"></span>
@@ -765,10 +928,37 @@
     <span class="current">1</span> / <span class="total">3</span> secciones
   </div>
 
-  <!-- PWA Install Prompt -->
-  <div class="install-prompt" id="install-prompt" role="alert">
-    <p>¡Instala esta app para acceso rápido!</p>
-    <button class="btn-terminal" id="install-btn">Instalar</button>
+  <!-- PWA Install Terminal Popup -->
+  <div class="install-overlay" id="install-overlay">
+    <div class="install-terminal">
+      <div class="install-terminal-header">
+        <span class="install-terminal-title">Sistema de Instalación PWA</span>
+        <button class="install-close" id="install-close" aria-label="Cerrar">×</button>
+      </div>
+      <div class="install-terminal-body">
+        <img src="https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20Logo-01.svg" 
+             alt="Kanzansio Logo" 
+             class="install-terminal-icon" />
+        
+        <div class="install-terminal-text">
+          <span class="highlight">¡Nueva actualización disponible!</span><br>
+          Instala Kanzansio Digital como app para acceso rápido y experiencia offline.
+        </div>
+        
+        <div class="install-command">
+          npm install kanzansio-digital --save
+        </div>
+        
+        <div class="install-terminal-actions">
+          <button class="install-terminal-btn primary" id="install-accept">
+            Instalar App
+          </button>
+          <button class="install-terminal-btn" id="install-later">
+            Más Tarde
+          </button>
+        </div>
+      </div>
+    </div>
   </div>
 
   <div id="static-overlay" aria-hidden="true">
@@ -857,27 +1047,102 @@
       });
     }
 
-    // --- PWA INSTALL PROMPT ---
+    // --- PWA INSTALL PROMPT MEJORADO ---
     let deferredPrompt;
-    const installPrompt = document.getElementById('install-prompt');
-    const installBtn = document.getElementById('install-btn');
+    const installOverlay = document.getElementById('install-overlay');
+    const installAcceptBtn = document.getElementById('install-accept');
+    const installLaterBtn = document.getElementById('install-later');
+    const installCloseBtn = document.getElementById('install-close');
 
+    // Función para mostrar el popup
+    function showInstallPrompt() {
+      installOverlay.classList.add('visible');
+      document.body.style.overflow = 'hidden';
+    }
+
+    // Función para ocultar el popup
+    function hideInstallPrompt() {
+      installOverlay.classList.remove('visible');
+      document.body.style.overflow = '';
+    }
+
+    // Detectar cuando el navegador ofrece instalar la PWA
     window.addEventListener('beforeinstallprompt', (e) => {
       e.preventDefault();
       deferredPrompt = e;
-      installPrompt.classList.add('visible');
+      
+      // Mostrar el popup después de un pequeño delay para mejor UX
+      setTimeout(() => {
+        showInstallPrompt();
+      }, 2000);
     });
 
-    if (installBtn) {
-      installBtn.addEventListener('click', async () => {
+    // Botón de instalar
+    if (installAcceptBtn) {
+      installAcceptBtn.addEventListener('click', async () => {
         if (deferredPrompt) {
+          hideInstallPrompt();
           deferredPrompt.prompt();
           const { outcome } = await deferredPrompt.userChoice;
-          console.log(`User ${outcome} the install prompt`);
+          
+          // Track el evento
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'pwa_install', {
+              'event_category': 'engagement',
+              'event_label': outcome
+            });
+          }
+          
+          console.log(`Usuario ${outcome === 'accepted' ? 'aceptó' : 'rechazó'} la instalación`);
           deferredPrompt = null;
-          installPrompt.classList.remove('visible');
         }
       });
+    }
+
+    // Botón de más tarde
+    if (installLaterBtn) {
+      installLaterBtn.addEventListener('click', () => {
+        hideInstallPrompt();
+        
+        // Track el evento
+        if (typeof gtag !== 'undefined') {
+          gtag('event', 'pwa_install_later', {
+            'event_category': 'engagement'
+          });
+        }
+      });
+    }
+
+    // Botón de cerrar
+    if (installCloseBtn) {
+      installCloseBtn.addEventListener('click', () => {
+        hideInstallPrompt();
+      });
+    }
+
+    // Cerrar con ESC
+    document.addEventListener('keydown', (e) => {
+      if (e.key === 'Escape' && installOverlay.classList.contains('visible')) {
+        hideInstallPrompt();
+      }
+    });
+
+    // Cerrar al hacer clic fuera del terminal
+    installOverlay.addEventListener('click', (e) => {
+      if (e.target === installOverlay) {
+        hideInstallPrompt();
+      }
+    });
+
+    // Detectar si ya está instalada
+    window.addEventListener('appinstalled', () => {
+      console.log('PWA instalada exitosamente');
+      hideInstallPrompt();
+    });
+
+    // Verificar si ya está instalada
+    if (window.matchMedia('(display-mode: standalone)').matches) {
+      console.log('La app ya está instalada');
     }
 
     // --- LÓGICA PRINCIPAL DE LA PÁGINA ---
