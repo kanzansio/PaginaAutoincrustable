@@ -749,3 +749,289 @@
                     <p data-text="• Entiendo el contenido desde la experiencia de un creador, no solo de un marketer"></p>
                     <p data-text="• Tantos conocimientos de diseño, programación y storytelling en una sola persona"></p>
                     <p data-text="• Esta página está creada con un plugin que yo, 2 Monsters y una IA ayudamos a desarrollar en una noche de insomnio. Imagina lo que puedo hacer por ti."></p>
+                    </section>
+                </div>
+              </div>
+              <span class="cursor typing" id="typing-cursor-placeholder" style="display: none;" aria-hidden="true"></span>
+            </main>
+          </div>
+        </div>
+      </div>
+    </section>
+  </div>
+
+  <!-- Progress Indicator -->
+  <div class="progress-indicator" id="progress-indicator" role="status" aria-live="polite">
+    <span class="current">1</span> / <span class="total">3</span> secciones
+  </div>
+
+  <!-- PWA Install Prompt -->
+  <div class="install-prompt" id="install-prompt" role="alert">
+    <p>¡Instala esta app para acceso rápido!</p>
+    <button class="btn-terminal" id="install-btn">Instalar</button>
+  </div>
+
+  <div id="static-overlay" aria-hidden="true">
+    <canvas id="static-canvas"></canvas>
+  </div>
+
+  <script>
+    // --- EFECTO DE ESTÁTICA AL CARGAR (OPTIMIZADO) ---
+    window.addEventListener('load', () => {
+      const overlay = document.getElementById('static-overlay');
+      const canvas = document.getElementById('static-canvas');
+      const ctx = canvas.getContext('2d');
+      const app = document.getElementById('app');
+      
+      function resize() {
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+      }
+      resize();
+      
+      // Debounce para resize
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(resize, 250);
+      });
+      
+      // Reducir frecuencia a 20fps para mejor rendimiento
+      const noiseInterval = setInterval(() => {
+        const imgData = ctx.createImageData(canvas.width, canvas.height);
+        const buf = new Uint32Array(imgData.data.buffer);
+        for (let i = 0; i < buf.length; i++) {
+          const v = Math.random() * 255 | 0;
+          buf[i] = (255 << 24) | (v << 16) | (v << 8) | v;
+        }
+        ctx.putImageData(imgData, 0, 0);
+      }, 50);
+      
+      setTimeout(() => {
+        overlay.style.opacity = '0';
+        app.style.opacity = '1';
+      }, 1000);
+      
+      overlay.addEventListener('transitionend', () => {
+        clearInterval(noiseInterval);
+        overlay.remove();
+      });
+    });
+
+    // --- CLASE PARA EFECTO DE ESCRITURA ---
+    class TerminalEffect {
+      constructor() {
+        this.cursor = document.getElementById('typing-cursor-placeholder');
+        this.isTyping = false;
+        this.typingSpeed = 20;
+      }
+      
+      async typeElement(element) {
+        if (this.isTyping) return;
+        this.isTyping = true;
+        this.cursor.style.display = 'inline-block';
+        element.style.opacity = '1';
+        element.classList.add('visible');
+        const text = element.getAttribute('data-text');
+        element.textContent = '';
+        element.appendChild(this.cursor);
+        
+        for (let i = 0; i < text.length; i++) {
+          element.textContent = text.substring(0, i + 1);
+          element.appendChild(this.cursor);
+          await new Promise(resolve => setTimeout(resolve, this.typingSpeed));
+        }
+        
+        this.cursor.style.display = 'none';
+        element.parentNode.appendChild(this.cursor);
+        this.isTyping = false;
+      }
+    }
+
+    // --- SERVICE WORKER PARA PWA ---
+    if ('serviceWorker' in navigator) {
+      window.addEventListener('load', () => {
+        navigator.serviceWorker.register('/sw.js')
+          .then(reg => console.log('Service Worker registrado'))
+          .catch(err => console.log('Service Worker error:', err));
+      });
+    }
+
+    // --- PWA INSTALL PROMPT ---
+    let deferredPrompt;
+    const installPrompt = document.getElementById('install-prompt');
+    const installBtn = document.getElementById('install-btn');
+
+    window.addEventListener('beforeinstallprompt', (e) => {
+      e.preventDefault();
+      deferredPrompt = e;
+      installPrompt.classList.add('visible');
+    });
+
+    if (installBtn) {
+      installBtn.addEventListener('click', async () => {
+        if (deferredPrompt) {
+          deferredPrompt.prompt();
+          const { outcome } = await deferredPrompt.userChoice;
+          console.log(`User ${outcome} the install prompt`);
+          deferredPrompt = null;
+          installPrompt.classList.remove('visible');
+        }
+      });
+    }
+
+    // --- LÓGICA PRINCIPAL DE LA PÁGINA ---
+    document.addEventListener('DOMContentLoaded', () => {
+      const terminalEffect = new TerminalEffect();
+      const readMoreBtn = document.getElementById('read-more-btn');
+      const introPromptContainer = document.getElementById('intro-prompt-container');
+      const sections = document.querySelectorAll('.sequential-section');
+      const progressIndicator = document.getElementById('progress-indicator');
+      const currentSpan = progressIndicator.querySelector('.current');
+      const totalSpan = progressIndicator.querySelector('.total');
+      let currentSectionIndex = 0;
+      let isFirstClick = true;
+
+      totalSpan.textContent = sections.length;
+
+      // Soporte para teclado
+      readMoreBtn.addEventListener('keydown', (e) => {
+        if (e.key === 'Enter' || e.key === ' ') {
+          e.preventDefault();
+          readMoreBtn.click();
+        }
+      });
+
+      readMoreBtn.addEventListener('click', async () => {
+        if (isFirstClick) {
+          setupCompactLayout();
+          isFirstClick = false;
+          progressIndicator.classList.add('visible');
+        }
+
+        if (currentSectionIndex < sections.length) {
+          readMoreBtn.disabled = true;
+          readMoreBtn.style.display = 'none';
+          readMoreBtn.setAttribute('aria-expanded', 'true');
+          document.getElementById('cursor').style.display = 'none';
+          
+          const sectionToReveal = sections[currentSectionIndex];
+          sectionToReveal.classList.add('visible');
+          const elementsToAnimate = sectionToReveal.querySelectorAll('[data-text], h2, h3');
+          
+          for (const element of elementsToAnimate) {
+            if (element.hasAttribute('data-text')) {
+              await terminalEffect.typeElement(element);
+            } else {
+              element.style.opacity = '1';
+            }
+          }
+          
+          currentSectionIndex++;
+          currentSpan.textContent = currentSectionIndex;
+          
+          if (currentSectionIndex < sections.length) {
+            readMoreBtn.style.display = 'inline-block';
+            document.getElementById('cursor').style.display = 'inline-block';
+            readMoreBtn.disabled = false;
+            readMoreBtn.setAttribute('aria-expanded', 'false');
+          } else {
+            progressIndicator.classList.remove('visible');
+            const finalContactButton = document.createElement('a');
+            finalContactButton.href = "https://wa.me/529994753666?text=Hola%20Eduardo,%20quiero%20hablar%20sobre%20mi%20proyecto%20digital";
+            finalContactButton.className = 'btn-terminal';
+            finalContactButton.textContent = 'Hablemos de tu proyecto';
+            finalContactButton.target = '_blank';
+            finalContactButton.rel = 'noopener noreferrer';
+            introPromptContainer.innerHTML = '';
+            introPromptContainer.appendChild(finalContactButton);
+            
+            // Track completion
+            if (typeof gtag !== 'undefined') {
+              gtag('event', 'content_viewed', {
+                'event_category': 'engagement',
+                'event_label': 'completed_reading'
+              });
+            }
+          }
+        }
+      });
+    });
+
+    // --- FUNCIÓN PARA CONFIGURAR EL MODO COMPACTO ---
+    function setupCompactLayout() {
+      const introPreview = document.getElementById('intro-preview');
+      const introContainer = document.getElementById('intro-prompt-container');
+      const header = document.getElementById('header');
+      const mainButtons = document.getElementById('main-buttons');
+      const title = header.querySelector('h1');
+      const logo = header.querySelector('.glitch-wrapper');
+      const terminalContent = document.getElementById('terminal-content');
+
+      introPreview.style.display = 'none';
+      header.classList.add('compact');
+      
+      const setPadding = () => {
+        const headerHeight = header.offsetHeight;
+        const isMobile = window.innerWidth <= 768;
+        const maxPadding = isMobile ? 110 : 90;
+        const paddingTop = Math.min(headerHeight + 10, maxPadding);
+        terminalContent.style.paddingTop = `${paddingTop}px`;
+      };
+      setPadding();
+      
+      const logoTitleWrapper = document.createElement('div');
+      logoTitleWrapper.className = 'logo-title-wrapper';
+      logoTitleWrapper.appendChild(logo);
+      logoTitleWrapper.appendChild(title);
+      
+      const navMenu = document.createElement('nav');
+      navMenu.className = 'nav-menu';
+      navMenu.setAttribute('role', 'navigation');
+      navMenu.setAttribute('aria-label', 'Navegación compacta');
+      
+      const resetButton = document.createElement('button');
+      resetButton.id = 'reset-btn';
+      resetButton.setAttribute('aria-label', 'Reiniciar página');
+      resetButton.onclick = () => location.reload();
+      
+      const mainButtonsContainer = document.createElement('div');
+      mainButtonsContainer.className = 'main-buttons-container';
+      mainButtonsContainer.appendChild(mainButtons);
+
+      navMenu.appendChild(mainButtonsContainer);
+      navMenu.appendChild(resetButton);
+      
+      header.innerHTML = '';
+      header.appendChild(logoTitleWrapper);
+      header.appendChild(navMenu);
+
+      const outputContainer = document.getElementById('terminal-content');
+      outputContainer.appendChild(introContainer);
+      introContainer.style.display = 'inline-flex';
+
+      // Debounce para resize
+      let resizeTimeout;
+      window.addEventListener('resize', () => {
+        clearTimeout(resizeTimeout);
+        resizeTimeout = setTimeout(setPadding, 250);
+      });
+    }
+
+    // --- TRACKING DE EVENTOS ---
+    document.addEventListener('DOMContentLoaded', () => {
+      // Track clicks en botones principales
+      document.querySelectorAll('.btn-terminal').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          if (typeof gtag !== 'undefined') {
+            gtag('event', 'click', {
+              'event_category': 'navigation',
+              'event_label': btn.textContent
+            });
+          }
+        });
+      });
+    });
+  </script>
+</body>
+</html>
