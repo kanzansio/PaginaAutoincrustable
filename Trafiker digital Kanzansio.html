@@ -89,7 +89,12 @@
     h1 { font-size: clamp(20px, 4vw, 26px); }
     h2 { font-size: clamp(22px, 4.5vw, 28px); }
     h3 { font-size: clamp(20px, 4vw, 26px); }
-    p { margin-bottom: 1rem; text-align: left; font-size: 1rem; max-width: var(--max-width); margin-left: auto; margin-right: auto; color: var(--text-bg); opacity: 0; position: relative; }
+    p { 
+      margin-bottom: 1rem; text-align: left; 
+      /* ✅ REGLA DE FUENTE RESPONSIVA */
+      font-size: max(10px, 2.2vw); 
+      max-width: var(--max-width); margin-left: auto; margin-right: auto; color: var(--text-bg); opacity: 0; position: relative; 
+    }
     p.visible { opacity: 1; }
     #intro-preview { padding: 1rem 0; min-height: 10vh; display: flex; flex-direction: column; justify-content: center; align-items: center; }
     
@@ -104,7 +109,7 @@
     .btn-terminal.read-more { font-size: 1.1rem; padding: 0.7rem 1.5rem; border-width: 3px; animation: pulse 2s infinite; }
     @keyframes pulse { 0% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0.4); } 70% { box-shadow: 0 0 0 10px rgba(0, 255, 65, 0); } 100% { box-shadow: 0 0 0 0 rgba(0, 255, 65, 0); } }
     
-    .intro-prompt-container { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; }
+    .intro-prompt-container { display: inline-flex; align-items: center; justify-content: center; gap: 0.5rem; transition: opacity 0.3s ease; }
     .intro-prompt-container .cursor { position: relative; animation: blink 1s infinite; display: inline-block; width: 10px; height: 24px; background: var(--color-console); vertical-align: middle; }
 
     #static-overlay { position: fixed; top: 0; left: 0; width: 100vw; height: 100vh; background: black; z-index: 10000; opacity: 1; transition: opacity 1s ease-out; pointer-events: none; }
@@ -122,6 +127,13 @@
       .btn-container { flex-direction: row; align-items: center; }
       .btn-terminal { width: auto; text-align: center; }
       .glitch-wrapper { width: 20vh; height: 20vh; }
+    }
+    
+    /* --- ✅ REGLA PARA PC --- */
+    @media (min-width: 992px) {
+      p {
+        font-size: 22px;
+      }
     }
   </style>
 </head>
@@ -150,7 +162,7 @@
 
             <main id="terminal-content">
               <div id="intro-preview">
-                <div class="intro-prompt-container">
+                <div class="intro-prompt-container" id="intro-prompt-container">
                   <button class="btn-terminal read-more" id="read-more-btn">Leer más</button>
                   <span class="cursor" id="cursor"></span>
                 </div>
@@ -181,10 +193,6 @@
                     <p data-text="• Entiendo el contenido desde la experiencia de un creador, no solo de un marketer"></p>
                     <p data-text="• Tantos conocimientos de diseño, programación y storytelling en una sola persona"></p>
                     <p data-text="• Esta página está creada con un plugin que yo, 2 Monsters y una IA ayudamos a desarrollar en una noche de insomnio. Imagina lo que puedo hacer por ti."></p>
-                    <br>
-                    <div class="btn-container">
-                      <a href="https://wa.me/529994753666?text=Hola%20Eduardo,%20quiero%20hablar%20sobre%20mi%20proyecto%20digital" class="btn-terminal">Hablemos de tu proyecto</a>
-                    </div>
                   </section>
                 </div>
               </div>
@@ -235,6 +243,7 @@
         this.isTyping = true;
         this.cursor.style.display = 'inline-block';
         element.style.opacity = '1';
+        element.classList.add('visible'); // Asegura visibilidad del párrafo
         const text = element.getAttribute('data-text');
         element.textContent = '';
         element.appendChild(this.cursor);
@@ -244,6 +253,7 @@
           await new Promise(resolve => setTimeout(resolve, this.typingSpeed));
         }
         this.cursor.style.display = 'none';
+        element.parentNode.appendChild(this.cursor); // Mueve el cursor al final de la sección
         this.isTyping = false;
       }
     }
@@ -252,6 +262,7 @@
     document.addEventListener('DOMContentLoaded', () => {
       const terminalEffect = new TerminalEffect();
       const readMoreBtn = document.getElementById('read-more-btn');
+      const introPromptContainer = document.getElementById('intro-prompt-container');
       const sections = document.querySelectorAll('.sequential-section');
       let currentSectionIndex = 0;
       let isFirstClick = true;
@@ -264,9 +275,13 @@
 
         if (currentSectionIndex < sections.length) {
           readMoreBtn.disabled = true;
+          readMoreBtn.style.display = 'none';
+          document.getElementById('cursor').style.display = 'none';
+          
           const sectionToReveal = sections[currentSectionIndex];
           sectionToReveal.classList.add('visible');
           const elementsToAnimate = sectionToReveal.querySelectorAll('[data-text], h2, h3');
+          
           for (const element of elementsToAnimate) {
             if (element.hasAttribute('data-text')) {
               await terminalEffect.typeElement(element);
@@ -275,34 +290,48 @@
             }
           }
           currentSectionIndex++;
-          readMoreBtn.disabled = false;
-        }
-
-        if (currentSectionIndex >= sections.length) {
-          readMoreBtn.style.display = 'none';
-          document.getElementById('cursor').style.display = 'none';
+          
+          // ✅ LÓGICA DEL CICLO DE BOTONES
+          if (currentSectionIndex < sections.length) {
+            // Si aún quedan secciones, vuelve a mostrar el botón
+            readMoreBtn.style.display = 'inline-block';
+            document.getElementById('cursor').style.display = 'inline-block';
+            readMoreBtn.disabled = false;
+          } else {
+            // Si era la última sección, crea y muestra el botón de contacto
+            const finalContactButton = document.createElement('a');
+            finalContactButton.href = "https://wa.me/529994753666?text=Hola%20Eduardo,%20quiero%20hablar%20sobre%20mi%20proyecto%20digital";
+            finalContactButton.className = 'btn-terminal';
+            finalContactButton.textContent = 'Hablemos de tu proyecto';
+            
+            // Añade el nuevo botón al contenedor del prompt inicial
+            introPromptContainer.innerHTML = ''; // Limpia el contenedor
+            introPromptContainer.appendChild(finalContactButton);
+          }
         }
       });
     });
 
     // --- FUNCIÓN PARA CONFIGURAR EL MODO COMPACTO ---
     function setupCompactLayout() {
-      const introContainer = document.querySelector('.intro-prompt-container');
+      const introPreview = document.getElementById('intro-preview');
+      const introContainer = document.getElementById('intro-prompt-container');
       const header = document.getElementById('header');
       const mainButtons = document.getElementById('main-buttons');
       const title = header.querySelector('h1');
       const logo = header.querySelector('.glitch-wrapper');
       const terminalContent = document.getElementById('terminal-content');
 
-      // ✅ FIX: Oculta el contenedor del botón en lugar del botón en sí
-      introContainer.style.display = 'none';
+      // ✅ FIX: Oculta el div de introducción original para eliminar el espacio
+      introPreview.style.display = 'none';
       
       header.classList.add('compact');
       
       const setPadding = () => {
           const headerHeight = header.offsetHeight;
-          // ✅ FIX: Se ajusta el padding a la altura del header + un margen mínimo
-          terminalContent.style.paddingTop = `${headerHeight + 10}px`;
+          // ✅ FIX: Se ajusta el padding con un tope máximo de 90px
+          const paddingTop = Math.min(headerHeight + 10, 90);
+          terminalContent.style.paddingTop = `${paddingTop}px`;
       };
       setPadding();
       
@@ -319,10 +348,11 @@
       header.appendChild(logoTitleWrapper);
       header.appendChild(navMenu);
 
-      // ✅ FIX: El botón "Leer más" se reinserta para que siga funcionando
-      const outputContainer = document.getElementById('output-container');
+      // El contenedor del botón "Leer más" se mueve al final del main
+      // para que aparezca después del texto.
+      const outputContainer = document.getElementById('terminal-content');
       outputContainer.appendChild(introContainer);
-      introContainer.style.display = 'inline-flex'; // Se vuelve a mostrar
+      introContainer.style.display = 'inline-flex';
 
       window.addEventListener('resize', setPadding);
     }
