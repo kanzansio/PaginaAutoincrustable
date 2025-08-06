@@ -1,0 +1,48 @@
+{
+  "name": "Kanzansio Digital Trafficker",
+  "short_name": "Kanzansio",
+  "description": "Eduardo Kanzansio - Digital Trafficker & Desarrollador Web en Mérida",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#031E11",
+  "theme_color": "#031E11",
+  "orientation": "portrait",
+  "icons": [
+    {
+      "src": "https://cdn.jsdelivr.net/gh/kanzansio/RepositorioDeUtilidades@88e72e9c0407ecb9dabba8d7aac98f39609eb1b3/Kanzansio%20Logo-01.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-192x192.png",
+      "sizes": "192x192",
+      "type": "image/png"
+    },
+    {
+      "src": "/icon-512x512.png",
+      "sizes": "512x512",
+      "type": "image/png"
+    }
+  ],
+  "categories": ["business", "productivity"],
+  "lang": "es-MX",
+  "dir": "ltr",
+  "prefer_related_applications": false,
+  "shortcuts": [
+    {
+      "name": "Contactar",
+      "short_name": "WhatsApp",
+      "description": "Contactar por WhatsApp",
+      "url": "https://wa.me/529994753666",
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
+    },
+    {
+      "name": "Proyectos",
+      "short_name": "Portfolio",
+      "description": "Ver proyectos web",
+      "url": "/proyectos-web",
+      "icons": [{ "src": "/icon-96x96.png", "sizes": "96x96" }]
+    }
+  ]
+}
