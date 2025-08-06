@@ -78,8 +78,8 @@
     .header-container.compact { position: fixed !important; top: 5% !important; left: 5% !important; right: 5% !important; max-width: 90% !important; margin: 0 auto !important; z-index: 102 !important; display: flex !important; align-items: center !important; justify-content: space-between !important; padding: 0.5rem !important; background: var(--bg-console) !important; border-bottom: 2px solid var(--color-console) !important; }
     .header-container.compact h1 { font-size: 1.5rem; margin: 0 0 0 1rem; }
     .header-container.compact .glitch-wrapper { width: 40px; height: 40px; margin: 0; }
-    .logo-title-wrapper { display: flex; align-items: center; gap: 1rem; }
-    .nav-menu { display: flex; gap: 1rem; margin-right: 1rem; }
+    .logo-title-wrapper { display: flex; align-items: center; gap: 1rem; flex-grow: 1; }
+    .nav-menu { display: flex; gap: 1rem; align-items: center; }
     .nav-menu .btn-terminal { padding: 0.4rem 0.8rem; font-size: 0.9rem; }
     .glitch-wrapper { width: 25vh; height: 25vh; margin: 0 auto; position: relative; overflow: hidden; transition: all 0.6s ease; }
     .glitch { display: block; width: 100%; height: 100%; object-fit: contain; }
@@ -91,8 +91,7 @@
     h3 { font-size: clamp(20px, 4vw, 26px); }
     p { 
       margin-bottom: 1rem; text-align: left; 
-      /* ✅ REGLA DE FUENTE RESPONSIVA */
-      font-size: max(10px, 2.2vw); 
+      font-size: 16px; /* ✅ TAMAÑO BASE PARA MÓVILES */
       max-width: var(--max-width); margin-left: auto; margin-right: auto; color: var(--text-bg); opacity: 0; position: relative; 
     }
     p.visible { opacity: 1; }
@@ -118,21 +117,60 @@
     .cursor.typing { display: inline-block; width: 10px; height: 20px; background: var(--color-console); animation: blink 1s infinite; vertical-align: text-bottom; }
     @keyframes blink { 0%, 49% { opacity: 1; } 50%, 100% { opacity: 0; } }
 
+    /* ✅ ESTILOS PARA EL BOTÓN DE CERRAR (X) */
+    #reset-btn {
+      width: 30px;
+      height: 30px;
+      padding: 0;
+      border: 2px solid var(--btn-primary);
+      background: transparent;
+      color: var(--btn-primary);
+      position: relative;
+      cursor: pointer;
+      transition: all 0.3s;
+    }
+    #reset-btn::before,
+    #reset-btn::after {
+      content: '';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      width: 20px;
+      height: 2px;
+      background-color: var(--btn-primary);
+      transition: background-color 0.3s;
+    }
+    #reset-btn::before {
+      transform: translate(-50%, -50%) rotate(45deg);
+    }
+    #reset-btn::after {
+      transform: translate(-50%, -50%) rotate(-45deg);
+    }
+    #reset-btn:hover {
+      background-color: var(--btn-primary);
+    }
+    #reset-btn:hover::before,
+    #reset-btn:hover::after {
+      background-color: var(--bg-console);
+    }
+
     @media (max-width: 768px) {
       body { font-size: 22px; }
       .header-container.compact { flex-direction: column; gap: 0.5rem; padding: 0.5rem !important; }
       .logo-title-wrapper { justify-content: center; width: 100%; }
-      .nav-menu { width: 100%; margin-right: 0; justify-content: center; display: flex; }
+      .nav-menu { width: 100%; margin-right: 0; justify-content: center; display: flex; flex-wrap: wrap; }
+      .main-buttons-container { display: flex; flex-grow: 1; justify-content: center; gap: 0.5rem; }
       .nav-menu .btn-terminal { flex-grow: 1; text-align: center; font-size: 0.8rem; padding: 0.4rem; }
       .btn-container { flex-direction: row; align-items: center; }
       .btn-terminal { width: auto; text-align: center; }
       .glitch-wrapper { width: 20vh; height: 20vh; }
+      #reset-btn { order: -1; margin-right: auto; flex-grow: 0; width: 35px; height: 35px; }
     }
     
-    /* --- ✅ REGLA PARA PC --- */
+    /* REGLA PARA PC */
     @media (min-width: 992px) {
       p {
-        font-size: 22px;
+        font-size: 22px; /* ✅ TAMAÑO PARA PC */
       }
     }
   </style>
@@ -243,7 +281,7 @@
         this.isTyping = true;
         this.cursor.style.display = 'inline-block';
         element.style.opacity = '1';
-        element.classList.add('visible'); // Asegura visibilidad del párrafo
+        element.classList.add('visible');
         const text = element.getAttribute('data-text');
         element.textContent = '';
         element.appendChild(this.cursor);
@@ -253,7 +291,7 @@
           await new Promise(resolve => setTimeout(resolve, this.typingSpeed));
         }
         this.cursor.style.display = 'none';
-        element.parentNode.appendChild(this.cursor); // Mueve el cursor al final de la sección
+        element.parentNode.appendChild(this.cursor);
         this.isTyping = false;
       }
     }
@@ -291,21 +329,16 @@
           }
           currentSectionIndex++;
           
-          // ✅ LÓGICA DEL CICLO DE BOTONES
           if (currentSectionIndex < sections.length) {
-            // Si aún quedan secciones, vuelve a mostrar el botón
             readMoreBtn.style.display = 'inline-block';
             document.getElementById('cursor').style.display = 'inline-block';
             readMoreBtn.disabled = false;
           } else {
-            // Si era la última sección, crea y muestra el botón de contacto
             const finalContactButton = document.createElement('a');
             finalContactButton.href = "https://wa.me/529994753666?text=Hola%20Eduardo,%20quiero%20hablar%20sobre%20mi%20proyecto%20digital";
             finalContactButton.className = 'btn-terminal';
             finalContactButton.textContent = 'Hablemos de tu proyecto';
-            
-            // Añade el nuevo botón al contenedor del prompt inicial
-            introPromptContainer.innerHTML = ''; // Limpia el contenedor
+            introPromptContainer.innerHTML = '';
             introPromptContainer.appendChild(finalContactButton);
           }
         }
@@ -322,15 +355,14 @@
       const logo = header.querySelector('.glitch-wrapper');
       const terminalContent = document.getElementById('terminal-content');
 
-      // ✅ FIX: Oculta el div de introducción original para eliminar el espacio
       introPreview.style.display = 'none';
-      
       header.classList.add('compact');
       
       const setPadding = () => {
           const headerHeight = header.offsetHeight;
-          // ✅ FIX: Se ajusta el padding con un tope máximo de 90px
-          const paddingTop = Math.min(headerHeight + 10, 90);
+          const isMobile = window.innerWidth <= 768;
+          const maxPadding = isMobile ? 110 : 90;
+          const paddingTop = Math.min(headerHeight + 10, maxPadding);
           terminalContent.style.paddingTop = `${paddingTop}px`;
       };
       setPadding();
@@ -342,14 +374,24 @@
       
       const navMenu = document.createElement('div');
       navMenu.className = 'nav-menu';
-      navMenu.appendChild(mainButtons);
+      
+      // ✅ BOTÓN DE REINICIO (X)
+      const resetButton = document.createElement('button');
+      resetButton.id = 'reset-btn';
+      resetButton.setAttribute('aria-label', 'Reiniciar');
+      resetButton.onclick = () => location.reload();
+      
+      const mainButtonsContainer = document.createElement('div');
+      mainButtonsContainer.className = 'main-buttons-container';
+      mainButtonsContainer.appendChild(mainButtons);
+
+      navMenu.appendChild(mainButtonsContainer);
+      navMenu.appendChild(resetButton);
       
       header.innerHTML = '';
       header.appendChild(logoTitleWrapper);
       header.appendChild(navMenu);
 
-      // El contenedor del botón "Leer más" se mueve al final del main
-      // para que aparezca después del texto.
       const outputContainer = document.getElementById('terminal-content');
       outputContainer.appendChild(introContainer);
       introContainer.style.display = 'inline-flex';
